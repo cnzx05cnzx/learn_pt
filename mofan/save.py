@@ -36,8 +36,8 @@ def save():
     plt.plot(x.data.numpy(), prediction.data.numpy(), 'r-', lw=5)
 
     # 2 ways to save the net
-    torch.save(net1, './model/net.pkl')  # save entire net
-    torch.save(net1.state_dict(), './model/net_params.pkl')  # save only the parameters
+    torch.save(net1, '../model/net.pkl')  # save entire net
+    torch.save(net1.state_dict(), '../model/net_params.pkl')  # save only the parameters
 
 
 def restore_net():

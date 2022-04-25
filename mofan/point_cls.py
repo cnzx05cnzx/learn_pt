@@ -27,15 +27,17 @@ plt.show()
 class Net(nn.Module):
     def __init__(self, n_feature, n_hidden, n_output):
         super(Net, self).__init__()
-        self.layer1 = nn.Linear(n_feature, n_hidden)  # hidden layer
-        self.layer2 = nn.Linear(n_hidden, n_output)  # output layer
+        self.layer1 = nn.Sequential(
+            nn.Linear(n_feature, n_hidden),
+            nn.ReLU(),
+            nn.Linear(n_hidden, n_output)
+        )
 
         self.criterion = nn.CrossEntropyLoss()
 
     # 数据更新
-    def forward(self, input):
-        output = F.relu(self.layer1(input))  # activation function for hidden layer
-        output = self.layer2(output)
+    def forward(self, ino):
+        output = self.layer1(ino)
         return output
 
     # 误差计算
